@@ -9,6 +9,7 @@ export const App = () => {
 
 
         <Route path='/' element={<Navigation />}></Route>
+        {/* <Route path='/home' element={<HomePage />}> */}
 
 
         </Routes>
