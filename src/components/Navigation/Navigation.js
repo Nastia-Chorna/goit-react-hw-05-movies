@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -22,6 +22,7 @@ return (
   <Link to="/movies">Movies</Link>
 </Nav>
 
+<Outlet/>
 </Wrapper>
 )
 }

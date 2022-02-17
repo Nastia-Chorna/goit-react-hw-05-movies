@@ -1,5 +1,4 @@
 import { Route, Routes} from 'react-router-dom';
-
 import Navigation from './components/Navigation/Navigation';
 
 export const App = () => {
@@ -8,10 +7,13 @@ export const App = () => {
         <Routes>
 
 
-        <Route path='/' element={<Navigation />}></Route>
-        {/* <Route path='/home' element={<HomePage />}> */}
+        <Route path='/' element={<Navigation />}>
+        <Route path='home' element={<div>HomePage</div>} />
+        <Route path='movies' element={<div>MoviesPage</div>} />
+        <Route path='/movies/:movieId/*' element={<div>MovieDetailsPage</div>} />
+      
 
-
+        </Route>
         </Routes>
     </div>
     )
