@@ -1,6 +1,6 @@
 
 import {useState, useEffect} from "react";
-import {getPublications} from "./services/theMovieApi";
+import {getPublications} from "../services/theMovieApi";
 import { Link, useLocation } from "react-router-dom";
 
 export const HomePage =() => {
