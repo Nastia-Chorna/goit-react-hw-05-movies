@@ -1,7 +1,15 @@
 import  {useState, useEffect} from "react";
 import { getSearchPublication } from "../services/theMovieApi";
 import { Link, useSearchParams, useLocation } from "react-router-dom";
-import { TailSpin } from  'react-loader-spinner'
+import { TailSpin } from  'react-loader-spinner';
+import {
+    ContainerTwo,
+    Button,
+    Input,
+    SearchForm,
+    Span
+} from "./MoviesPage.styled";
+import background from "../images/cinema.jpg"
 
 
 
@@ -12,22 +20,20 @@ export const MoviesPage = () => {
     const location = useLocation();
     const query = searchParams.get('query')
 
-    useEffect(() => {
-        if (query === null) {
-            return;
-        }
-     async function FetchSearch () {
-        setIsLoad(true);
-         try {
-             const cardSearch = await getSearchPublication(query)
-             if (cardSearch.length === 0) {
-                 alert(`по запросу "${query}", фильмов не найдено`)
+useEffect(() => {
+    if (query === null) {
+    return;
+    }
+  async function FetchSearch () {
+     setIsLoad(true);
+      try {
+          const cardSearch = await getSearchPublication(query)
+          if (cardSearch.length === 0) {
+            alert(`Oops, nothing found!`)
             } 
+   setSearhFilm(cardSearch)
              
-             setSearhFilm(cardSearch)
-             
-         } catch (error) {
-             
+         } catch (error) {    
          } finally {
             setIsLoad(false)
           } 
@@ -41,34 +47,36 @@ export const MoviesPage = () => {
         setSearchParams({ query: e.currentTarget.elements.query.value });
 
         if (e.currentTarget.elements.query.value.trim() === '') {
-            alert('введите название фильма')
+            alert('Please, enter a Movie Title')
             return;            
         }
         e.currentTarget.reset();
     }
    
-    return ( 
-        <>
-            {isLoad && <TailSpin />}
-            <div>
-                <header className="searchbar">
-                    <form className="form" onSubmit={hendleSubmit}>
-                        
-                            <button type="submit" className="button" >
-                                <span className="button-label">Search</span>
-                            </button>
+return ( 
+    <>
+     <div style={{ backgroundImage: `url(${background})` }}>
+      
+    </div>
+    {isLoad && <TailSpin />}
+     <ContainerTwo>
+            <SearchForm className="searchbar">
+                <form className="form" onSubmit={hendleSubmit}>
+                <Button type="submit" className="button" >
+                <Span className="button-label">Search</Span>
+                </Button>
                                             
-                    <input                        
-                        className="input"
-                        type="text"
-                        autoComplete="off"
-                        autoFocus
-                        placeholder="Search movies"                        
-                        name="query"
+                <Input                        
+                 className="input"
+                  type="text"
+                  autoFocus
+                  autoComplete="off"
+                  placeholder="Search your movies"                        
+                  name="query"
                     />
                     </form>
-                </header>
-            </div>
+                </SearchForm>
+            </ContainerTwo>
             {searhFilm.length > 0 && (
             <ul>
                 {searhFilm.map(({id, title}) => (
