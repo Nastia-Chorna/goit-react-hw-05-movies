@@ -6,8 +6,8 @@ import { lazy } from "react";
 import{
     MoviePic,
     Details,
-    MovieCard,
     PictureContainer,
+    CastReview
     
 } from "./MovieDetailsPage.styled"
 
@@ -39,7 +39,7 @@ export const MovieDetailsPage = () => {
     }, [movieId]);
     
 return (
-        <MovieCard>
+        <div>
             <hr />
             <Link to={location?.state?.from ?? '/home'}><FaArrowLeft/>Back to the list</Link>
             {item.map(({genres, title, release_date, overview, poster_path, vote_average, id}) => (
@@ -58,17 +58,17 @@ return (
             </div>
             ))} 
             <hr />
-            <div>
+            <CastReview>
                 <Link to={'cast'} state={{from: location?.state?.from ?? '/'}}>Cast</Link>
                 <Link to={'reviews'} state={{from: location?.state?.from ?? '/'}}>Reviews</Link>
-            </div>
+            </CastReview>
             <div>
             <Routes>
                 <Route path="cast" element={<Cast />}/>
                 <Route path="reviews" element={<Reviews />}/>
             </Routes>  
             </div>
-        </MovieCard>
+        </div>
     
     )
 }
