@@ -7,20 +7,21 @@ import {
 } from "./Cast.styled"
 
 export const Cast =() => {
-    const [movieID] = useParams();
+    const data = useParams();
+    const id = data.movieId;
     const [actors, setActors] = useState();
 
     useEffect(() => {
         async function FetchActors(){
             try{
-                const actorsData = await getPublicationCastId(movieID)
+                const actorsData = await getPublicationCastId(data.movieId)
                 setActors(actorsData)
             }
             catch (error){
 
             }
         } FetchActors()
-    }, [movieID])
+    }, [data.movieId])
 
 return(
     <Container>

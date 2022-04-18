@@ -23,6 +23,7 @@ export const MovieDetailsPage = () => {
     const {movieId} = useParams();
     const [item, setItem] = useState([]);
     const location = useLocation();
+    const filmID = item.id;
     
     
     
@@ -59,8 +60,12 @@ return (
             ))} 
             <hr />
             <CastReview>
-                <Link to={'cast'} state={{from: location?.state?.from ?? '/'}}>Cast</Link>
-                <Link to={'reviews'} state={{from: location?.state?.from ?? '/'}}>Reviews</Link>
+                <Link 
+            to={`/movies/${filmID}/cast`}
+            state={{ from: location?.state?.from ?? '/' }}
+          >Cast
+          </Link>
+                <Link to={`/movies/${filmID}/reviews`} state={{from: location?.state?.from ?? '/'}}>Reviews</Link>
             </CastReview>
             <div>
             <Routes>
