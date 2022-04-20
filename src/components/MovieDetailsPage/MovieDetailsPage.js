@@ -1,4 +1,4 @@
-import { useParams, Link, Route, Routes, useLocation } from "react-router-dom"
+import { useParams, Link, NavLink, Route, Routes, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react";
 import {FaArrowLeft} from "react-icons/fa"
 import { getPublicationId } from "../services/theMovieApi";
@@ -60,12 +60,18 @@ return (
             ))} 
             <hr />
             <CastReview>
-                <Link 
+            <Link
             to={`/movies/${filmID}/cast`}
             state={{ from: location?.state?.from ?? '/' }}
-          >Cast
+          >
+            Cast
           </Link>
-                <Link to={`/movies/${filmID}/reviews`} state={{from: location?.state?.from ?? '/'}}>Reviews</Link>
+          <NavLink
+            to={`/movies/${filmID}/reviews`}
+            state={{ from: location?.state?.from ?? '/' }}
+          >
+            Reviews
+          </NavLink>
             </CastReview>
             <div>
             <Routes>
